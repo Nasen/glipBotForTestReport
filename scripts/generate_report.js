@@ -51,17 +51,24 @@ module.exports = (robot) => {
             console.log("Encountered an error: " + err.toString());
           } else {
             var jsn = JSON.parse(body);
-            date = jsn.date;
-            totalNum = jsn.total;
-            passNum = jsn.pass;
-            failNum = jsn.fail;
-            skipNum = jsn.skip;
-            resolve([date, totalNum, passNum, failNum, skipNum]);
+
+            date = jsn[0].date;
+            totalNum = jsn[0].total;
+            passNum = jsn[0].pass;
+            failNum = jsn[0].fail;
+            skipNum = jsn[0].skip;
+            jsn.shift();
+            resolve(jsn);
           }
         })
       }).then(function (result) {
-          response.reply("test result:\n" + "Total:" + totalNum + ", Pass:" + passNum + ", Failed:" + failNum + ", Skipped:" + skipNum +
-            "\n" + "https://docs.google.com/spreadsheets/d/1NGYcuLf88AYvf7HnMklLDq_jx4zYcjjgp4x1w73wYew/edit#gid=0");
+          if(isAndroid){
+            response.reply("mTHor Android test result:\n" + "Total:" + totalNum + ", Pass:" + passNum + ", Failed:" + failNum + ", Skipped:" + skipNum +
+              "\n" + "https://docs.google.com/spreadsheets/d/16ZOEVVwmAgKHtc5RDnsqfqIhP1418128LxrlteFvH3o/edit#gid=0");
+          }else {
+            response.reply("mThor iOS test result:\n" + "Total:" + totalNum + ", Pass:" + passNum + ", Failed:" + failNum + ", Skipped:" + skipNum +
+              "\n" + "https://docs.google.com/spreadsheets/d/1NGYcuLf88AYvf7HnMklLDq_jx4zYcjjgp4x1w73wYew/edit#gid=0");
+          }
         })
     }
   )
