@@ -65,7 +65,7 @@ module.exports = (robot) => {
           if(isAndroid){
             response.reply("mTHor Android test result:\n" + "Total:" + totalNum + ", Pass:" + passNum + ", Failed:" + failNum + ", Skipped:" + skipNum +
               "\n" + "https://docs.google.com/spreadsheets/d/16ZOEVVwmAgKHtc5RDnsqfqIhP1418128LxrlteFvH3o/edit#gid=0");
-          }else {
+          }else if(isIOS){
             response.reply("mThor iOS test result:\n" + "Total:" + totalNum + ", Pass:" + passNum + ", Failed:" + failNum + ", Skipped:" + skipNum +
               "\n" + "https://docs.google.com/spreadsheets/d/1NGYcuLf88AYvf7HnMklLDq_jx4zYcjjgp4x1w73wYew/edit#gid=0");
           }
